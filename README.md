@@ -1,12 +1,12 @@
-\# Домашнее задание к занятию «SQL. Часть 2»
+# Домашнее задание к занятию «SQL. Часть 2»
 
 
 
-\*\*Выполнил: Павел Чернов\*\*
+**Выполнил: Павел Чернов**
 
 
 
-\## Задание 1
+## Задание 1
 
 
 
@@ -22,35 +22,35 @@
 
 SELECT
 
-&#x20;   s.first\_name,
+    s.first_name,
 
-&#x20;   s.last\_name,
+    s.last_name,
 
-&#x20;   c.city,
+    c.city,
 
-&#x20;   COUNT(cu.customer\_id) AS customers\_count
+    COUNT(cu.customer_id) AS customers_count
 
 FROM store st
 
-JOIN staff s ON st.manager\_staff\_id = s.staff\_id
+JOIN staff s ON st.manager_staff_id = s.staff_id
 
-JOIN address a ON st.address\_id = a.address\_id
+JOIN address a ON st.address_id = a.address_id
 
-JOIN city c ON a.city\_id = c.city\_id
+JOIN city c ON a.city_id = c.city_id
 
-JOIN customer cu ON cu.store\_id = st.store\_id
+JOIN customer cu ON cu.store_id = st.store_id
 
 GROUP BY
 
-&#x20;   st.store\_id,
+    st.store_id,
 
-&#x20;   s.first\_name,
+    s.first_name,
 
-&#x20;   s.last\_name,
+    s.last_name,
 
-&#x20;   c.city
+    c.city
 
-HAVING COUNT(cu.customer\_id) > 300;
+HAVING COUNT(cu.customer_id) > 300;
 
 ```
 
@@ -64,11 +64,11 @@ HAVING COUNT(cu.customer\_id) > 300;
 
 
 
-!\[Задание 1](img/task1.png)
+![Задание 1](img/task1.png)
 
 
 
-\## Задание 2
+## Задание 2
 
 
 
@@ -82,15 +82,15 @@ HAVING COUNT(cu.customer\_id) > 300;
 
 ```sql
 
-SELECT COUNT(\*) AS films\_longer\_than\_average
+SELECT COUNT(*) AS films_longer_than_average
 
 FROM film
 
 WHERE length > (
 
-&#x20;   SELECT AVG(length)
+    SELECT AVG(length)
 
-&#x20;   FROM film
+    FROM film
 
 );
 
@@ -106,11 +106,11 @@ WHERE length > (
 
 
 
-!\[Задание 2](img/task2.png)
+![Задание 2](img/task2.png)
 
 
 
-\## Задание 3
+## Задание 3
 
 
 
@@ -126,17 +126,17 @@ WHERE length > (
 
 SELECT
 
-&#x20;   DATE\_FORMAT(p.payment\_date, '%Y-%m') AS payment\_month,
+    DATE_FORMAT(p.payment_date, '%Y-%m') AS payment_month,
 
-&#x20;   ROUND(SUM(p.amount), 2) AS total\_payments,
+    ROUND(SUM(p.amount), 2) AS total_payments,
 
-&#x20;   COUNT(DISTINCT p.rental\_id) AS rentals\_count
+    COUNT(DISTINCT p.rental_id) AS rentals_count
 
 FROM payment p
 
-GROUP BY DATE\_FORMAT(p.payment\_date, '%Y-%m')
+GROUP BY DATE_FORMAT(p.payment_date, '%Y-%m')
 
-ORDER BY total\_payments DESC
+ORDER BY total_payments DESC
 
 LIMIT 1;
 
@@ -148,13 +148,13 @@ LIMIT 1;
 
 
 
-\- месяц: `2005-07`;
+- месяц: `2005-07`;
 
-\- сумма платежей: `28373.89`;
+- сумма платежей: `28373.89`;
 
-\- количество аренд: `6709`.
+- количество аренд: `6709`.
 
 
 
-!\[Задание 3](img/task3.png)
+![Задание 3](img/task3.png)
 
